@@ -10,27 +10,54 @@ namespace FredBradley\CranleighCulturePlugin;
 
 use PostTypes\PostType;
 
-class CustomPostType
-{
+/**
+ * Class CustomPostType
+ *
+ * @package FredBradley\CranleighCulturePlugin
+ */
+class CustomPostType {
+
+	/**
+	 * @var
+	 */
 	private $post_type_key;
 
+	/**
+	 * @var
+	 */
 	public $post_type;
 
+	/**
+	 * @var array
+	 */
 	private $supports = [
 		"thumbnail",
 		"title",
 		"editor",
 	];
 
+	/**
+	 * @var array
+	 */
 	private $options = [
 		"menu_position" => 27,
-		"menu_icon" => "dashicons-book-alt",
+		"menu_icon"     => "dashicons-book-alt",
 	];
 
+	/**
+	 * @var array
+	 */
 	public $labels = [
 	];
 
-	function __construct(string $post_key, array $options=[], array $labels=[]) {
+	/**
+	 * CustomPostType constructor.
+	 *
+	 * @param string $post_key
+	 * @param array  $options
+	 * @param array  $labels
+	 */
+	function __construct( string $post_key, array $options = [], array $labels = [] ) {
 
 		$this->setPostTypeKey( $post_key );
 
@@ -40,21 +67,33 @@ class CustomPostType
 
 		$this->options = array_merge( $options, $this->options );
 	}
-	
+
+	/**
+	 *
+	 */
 	public function register() {
-		$this->post_type = new PostType($this->post_type_key, $this->options, $this->labels);
+
+		$this->post_type = new PostType( $this->post_type_key, $this->options, $this->labels );
 		$this->setTaxonomies();
 	}
 
-	private function setPostTypeKey(string $key) {
-		$key                 = str_replace(" ", "-", $key);
-		$this->post_type_key = strtolower($key);
+	/**
+	 * @param string $key
+	 */
+	private function setPostTypeKey( string $key ) {
+
+		$key                 = str_replace( " ", "-", $key );
+		$this->post_type_key = strtolower( $key );
 	}
 
+	/**
+	 *
+	 */
 	private function setTaxonomies() {
-		$this->post_type->taxonomy('culture-mag-edition');
-		$this->post_type->taxonomy('post_tag');
-		$this->post_type->taxonomy('category');
+
+		$this->post_type->taxonomy( 'culture-mag-edition' );
+		$this->post_type->taxonomy( 'post_tag' );
+		$this->post_type->taxonomy( 'category' );
 
 	}
 

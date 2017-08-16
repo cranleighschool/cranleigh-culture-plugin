@@ -4,19 +4,41 @@ namespace FredBradley\CranleighCulturePlugin;
 
 use Puc_v4_Factory;
 
+/**
+ * Class BaseController
+ *
+ * @package FredBradley\CranleighCulturePlugin
+ */
 abstract class BaseController {
+
+	/**
+	 *
+	 */
 	const PLUGIN_PATH = "path";
 
+	/**
+	 * @return mixed
+	 */
 	abstract public function setupPlugin();
 
+	/**
+	 * BaseController constructor.
+	 */
 	public function __construct() {
 		$this->setupPlugin();
 	}
 
+	/**
+	 * @param string $plugin_name
+	 */
 	public function runUpdateChecker(string $plugin_name) {
 		return $this->update_check($plugin_name, "cranleighschool");
 	}
 
+	/**
+	 * @param string $plugin_name
+	 * @param string $user
+	 */
 	private function update_check(string $plugin_name, string $user) {
 
 		$updateChecker = Puc_v4_Factory::buildUpdateChecker(
