@@ -17,4 +17,3 @@ if ( ! defined( 'WPINC' ) ) {
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
 
 $plugin = new Plugin();
-echo $plugin->PLUGIN_PATH;
