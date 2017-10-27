@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8f65b639ef171690d74f9fc07ff08ce7",
-    "content-hash": "07a1f2988997d54bb9fdfa2245713bfe",
+    "hash": "b177e4f3cd7de037e140447160ff128a",
+    "content-hash": "8e83360587290c04dea0e65e458d8b60",
     "packages": [
         {
             "name": "jjgrainger/posttypes",
@@ -92,6 +92,50 @@
                 "wp-admin"
             ],
             "time": "2017-07-12 04:03:47"
+        },
+        {
+            "name": "tareq1988/wordpress-settings-api-class",
+            "version": "v1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tareq1988/wordpress-settings-api-class.git",
+                "reference": "ecb2778e17ef5d871f2d13697406d5efed9068ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tareq1988/wordpress-settings-api-class/zipball/ecb2778e17ef5d871f2d13697406d5efed9068ac",
+                "reference": "ecb2778e17ef5d871f2d13697406d5efed9068ac",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv2"
+            ],
+            "authors": [
+                {
+                    "name": "Tareq Hasan",
+                    "email": "tareq@wedevs.com",
+                    "homepage": "http://tareq.wedevs.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WordPress settings API Abstraction Class",
+            "homepage": "https://github.com/tareq1988/wordpress-settings-api-class",
+            "keywords": [
+                "settings-api",
+                "wordpress",
+                "wp"
+            ],
+            "time": "2015-10-18 08:33:32"
         },
         {
             "name": "yahnis-elsts/plugin-update-checker",

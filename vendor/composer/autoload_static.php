@@ -33,11 +33,16 @@ class ComposerStaticInit29f249eaf446354616af86f8eeac1c8a
         ),
     );
 
+    public static $classMap = array (
+        'WeDevs_Settings_API' => __DIR__ . '/..' . '/tareq1988/wordpress-settings-api-class/src/class.settings-api.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit29f249eaf446354616af86f8eeac1c8a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit29f249eaf446354616af86f8eeac1c8a::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit29f249eaf446354616af86f8eeac1c8a::$classMap;
 
         }, null, ClassLoader::class);
     }

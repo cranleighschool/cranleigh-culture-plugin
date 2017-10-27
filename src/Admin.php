@@ -51,7 +51,7 @@ class Admin {
 
 		switch($column) {
 			case 'featured_image':
-				echo the_post_thumbnail(array(200,200), ["style" => "max-width:200px;"]);
+				echo the_post_thumbnail('thumbnail');
 				break;
 		}
 

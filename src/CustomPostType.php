@@ -42,7 +42,10 @@ class CustomPostType {
 	private $options = [
 		"menu_position" => 27,
 		"menu_icon"     => "dashicons-book-alt",
-		"has_archive" => true
+		"has_archive" => true,
+		"rewrite" => [
+			"slug" => "culture"
+		]
 	];
 
 	/**
@@ -95,7 +98,6 @@ class CustomPostType {
 
 		$this->post_type->taxonomy( 'culture-mag-edition' );
 		$this->post_type->taxonomy( 'post_tag' );
-		$this->post_type->taxonomy( 'category' );
 
 	}
 

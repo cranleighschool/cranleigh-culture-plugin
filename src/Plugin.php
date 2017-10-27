@@ -21,8 +21,13 @@ class Plugin extends BaseController {
 		parent::__construct();
 		$this->runUpdateChecker( 'cranleigh-culture-plugin' );
 		Admin::run();
+		Template::run();
+		$settings = new Settings();
 	}
-
+	public static function setting($setting) {
+		$settings = new Setting('culture-settings');
+		return $settings->$setting;
+	}
 	/**
 	 *
 	 */
@@ -44,4 +49,6 @@ class Plugin extends BaseController {
 
 		return $this->post_type;
 	}
+
+
 }
