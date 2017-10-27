@@ -13,6 +13,7 @@ get_header();
 	if ( Plugin::setting('admin-only') && !is_user_logged_in() ) {
 		echo '<div class="row"><div class="col-md-6 col-md-offset-3">';
 		echo '<div class="alert alert-warning"><p>We are undertaking some maintenance to this page. Please try again in a few moments.</p></div>';
+
 		echo '</div></div>';
 	} else {
 		?>

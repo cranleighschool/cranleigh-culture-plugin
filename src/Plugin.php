@@ -23,6 +23,8 @@ class Plugin extends BaseController {
 		Admin::run();
 		Template::run();
 		$settings = new Settings();
+		add_filter('get_the_archive_title', array($this,'filter_title'), 4);
+
 	}
 	public static function setting($setting) {
 		$settings = new Setting('culture-settings');
@@ -50,5 +52,12 @@ class Plugin extends BaseController {
 		return $this->post_type;
 	}
 
+	public function filter_title($title) {
+		if (is_post_type_archive( $this->post_type )):
+			return str_replace("Archives:", "", $title); //'The ' . $title . ' was filtered';
+		endif;
+
+		return $title;
+	}
 
 }

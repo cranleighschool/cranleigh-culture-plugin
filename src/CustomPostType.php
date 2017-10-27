@@ -34,6 +34,7 @@ class CustomPostType {
 		"thumbnail",
 		"title",
 		"editor",
+		"page-attributes"
 	];
 
 	/**
@@ -45,7 +46,7 @@ class CustomPostType {
 		"has_archive" => true,
 		"rewrite" => [
 			"slug" => "culture"
-		]
+		],
 	];
 
 	/**
