@@ -20,6 +20,7 @@ class Plugin extends BaseController {
 	public function __construct() {
 		parent::__construct();
 		$this->runUpdateChecker( 'cranleigh-culture-plugin' );
+		Admin::run();
 	}
 
 	/**

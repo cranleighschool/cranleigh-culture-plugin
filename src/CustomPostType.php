@@ -42,12 +42,14 @@ class CustomPostType {
 	private $options = [
 		"menu_position" => 27,
 		"menu_icon"     => "dashicons-book-alt",
+		"has_archive" => true
 	];
 
 	/**
 	 * @var array
 	 */
 	public $labels = [
+		"name" => "Culture Magazine"
 	];
 
 	/**
