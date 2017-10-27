@@ -63,4 +63,19 @@ class Template {
 		);
 	}
 
+	public static function author_bio($post_id=null) {
+		if ($post_id===null) {
+			$post_id = get_the_ID();
+		}
+		$bio = get_post_meta($post_id, 'article_author_bio', true);
+		if (!empty($bio)) {
+			echo '<div class="well well-sm author-bio">';
+			echo '<h3>' . get_post_meta( $post_id, 'guest-author', true ) . '</h3>';
+			echo '<em>';
+			echo wpautop( $bio );
+			echo '</em>';
+			echo '</div>';
+		}
+	}
+
 }

@@ -6,7 +6,7 @@
  *
  * @package cranleigh-2016
  */
-
+use FredBradley\CranleighCulturePlugin\Template;
 get_header();
 if (get_post_meta(get_the_ID(), 'cran_hero', true) || in_array(get_post_type( $post ), ["departments", "sport"])) {
 	cranleigh_2016_hero_image('slim', $post->post_name);
@@ -45,11 +45,7 @@ if (get_post_meta(get_the_ID(), 'cran_hero', true) || in_array(get_post_type( $p
 
 							<div class="entry-content">
 								<?php
-								echo '<div class="well well-sm author-bio">';
-									echo '<h3>'.get_post_meta(get_the_ID(), 'guest-author', true).'</h3>';
-									echo '<em>';
-									echo wpautop(get_post_meta(get_the_ID(), 'article_author_bio', true));
-									echo '</em></div>';
+								Template::author_bio();
 								?>
 								<?php
 								if (has_post_thumbnail()) {
