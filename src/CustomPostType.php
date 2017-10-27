@@ -72,6 +72,13 @@ class CustomPostType {
 		$this->options[ 'supports' ] = $this->supports;
 
 		$this->options = array_merge( $options, $this->options );
+
+		add_filter('rwmb_meta_boxes', array($this, 'metaboxes'));
+		add_action('edit_form_after_title', function() {
+			global $post, $wp_meta_boxes;
+			do_meta_boxes(get_current_screen(), "author_bio", $post);
+			unset($wp_meta_boxes[get_post_type($post)]['author_bio']);
+		});
 	}
 
 	/**
@@ -100,6 +107,24 @@ class CustomPostType {
 		$this->post_type->taxonomy( 'culture-mag-edition' );
 		$this->post_type->taxonomy( 'post_tag' );
 
+	}
+
+	public function metaboxes($metaboxes) {
+
+		$metaboxes[] = array(
+			"title" => __("Author Bio", 'cranleigh-2016'),
+			"post_types" => $this->post_type_key,
+			"context" => "author_bio",
+			"priority" => "high",
+			"fields" => array(
+				array(
+					"id" => "article_author_bio",
+					"name" => "Author Bio",
+					"type" => "textarea"
+				)
+			)
+		);
+		return $metaboxes;
 	}
 
 }
