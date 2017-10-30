@@ -29,6 +29,7 @@ class Template {
 	}
 	public static function filter_posts($query) {
 		if (is_post_type_archive('culture-article') && !is_admin()) {
+			$query->set("orderby", ["menu_order" => "ASC", "date" => "ASC"]);
 			$query->set('post_status', ['publish', 'draft', 'pending', 'private', 'future']);
 		}
 	}
