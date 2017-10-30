@@ -15,6 +15,8 @@ class Template {
 		add_filter('template_include', array(self::class, 'select_template'));
 		add_filter( 'excerpt_length', array(self::class, 'excerpt_length'), 9999 );
 		add_action('widgets_init', array(self::class, 'register_sidebar'));
+		add_filter( 'wpseo_opengraph_image', array(self::class, 'prefix_filter_og_image'), 10, 1 );
+		add_action('wp_head', array(self::class, 'prefix_filter_og_image_head'), 10, 1);
 
 		if (Plugin::setting('include-drafts'))
 			add_action('pre_get_posts', array(self::class, 'filter_posts'));
@@ -27,6 +29,19 @@ class Template {
 		return $length;
 
 	}
+
+	public static function prefix_filter_og_image( $img ) {
+		if( is_post_type_archive( 'culture-article' ) )
+			$img = 'https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg';
+		return $img;
+	}
+
+	public static function prefix_filter_og_image_head( $img ) {
+		if( is_post_type_archive( 'culture-article' ) )
+			echo '<meta property="og:image" content="https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg" />';
+			echo '<meta property="og:description" content="'.strip_tags(Plugin::setting('welcome-paragraph')).'" />';
+	}
+
 	public static function filter_posts($query) {
 		if (is_post_type_archive('culture-article') && !is_admin()) {
 			$query->set("orderby", ["menu_order" => "ASC", "date" => "ASC"]);
