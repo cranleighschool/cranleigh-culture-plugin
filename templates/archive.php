@@ -37,6 +37,7 @@ get_header();
 							?>
 						</header><!-- .page-header -->
 
+						<h2 class="text-center">Articles from the Magazine</h2>
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
 								<?php
