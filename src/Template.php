@@ -32,10 +32,11 @@ class Template {
 
 	public static function prefix_filter_og_image_head( $img ) {
 		if ( is_post_type_archive( 'culture-article' ) ) {
-			$image = "https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg";
-		}   $description = strip_tags(Plugin::setting('welcome-paragraph'));
-			echo '<meta name="og:image" content="'.$image.'" />';
-			echo '<meta name="og:description" content="'.$description.'" />';
+			$image       = "https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg";
+			$description = strip_tags( Plugin::setting( 'welcome-paragraph' ) );
+			echo '<meta name="og:image" property="og:image" content="' . $image . '" />';
+			echo '<meta name="og:description" property="og:description" content="' . $description . '" />';
+		}
 	}
 
 	public static function filter_posts($query) {
