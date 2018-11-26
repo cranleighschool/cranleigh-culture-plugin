@@ -3,7 +3,7 @@
 Plugin Name: Cranleigh Culture Plugin
 Plugin URI: https://www.cranleigh.org
 Description: Cranleigh Culture Plugin
-Version: 1.3
+Version: 2.0
 Author: fredbradley
 Author URI: https://www.cranleigh.org
 License: GPL2

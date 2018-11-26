@@ -88,6 +88,9 @@ class CustomPostType {
 
 		$this->post_type = new PostType( $this->post_type_key, $this->options, $this->labels );
 		$this->setTaxonomies();
+
+		$rewrites = ResetPermalinks::run();
+		$customMeta = TaxCustomField::run();
 	}
 
 	/**
