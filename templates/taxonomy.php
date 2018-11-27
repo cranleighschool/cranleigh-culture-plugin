@@ -10,12 +10,19 @@
 use FredBradley\CranleighCulturePlugin\Plugin;
 
 get_header();
+$obj = get_queried_object();
 
-if ( Plugin::setting( 'admin-only' ) === "on" && ! is_user_logged_in() ) {
-	echo '<div class="row"><div class="col-md-6 col-md-offset-3">';
-	echo '<div class="alert alert-warning"><p>We are undertaking some maintenance to this page. Please try again in a few moments.</p></div>';
-
-	echo '</div></div>';
+if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) === false && ! is_user_logged_in() ) {
+	echo '<div class="container">';
+	echo '<div class="row">';
+	echo '<div id="primary" class="col-sm-12 content-area">';
+	echo '<div id="main" class="site-main" role="main">';
+	echo '<header class="page-header">';
+	echo '<h1 class="page-title text-center">Cranleigh Culture Magazine: '.$obj->name.'</h1>';
+	echo '</header>';
+	echo '<div class="alert alert-warning"><p>This edition is not yet published. Please come back soon.</p></div>';
+	echo '</main>';
+	echo '</div></div></div>';
 } else {
 	?>
 
@@ -30,20 +37,25 @@ if ( Plugin::setting( 'admin-only' ) === "on" && ! is_user_logged_in() ) {
 
 					<header class="page-header">
 						<?php
-						$obj = get_queried_object();
 
 						?>
-						<h1 class="page-title text-center"><?php echo $obj->name;?></h1>
+						<h1 class="page-title text-center"><?php echo $obj->name; ?></h1>
+						<p class="lead text-center"><?php echo $obj->description; ?></p>
 						<?php
 
-						if (\FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed($obj)) {
-							echo \FredBradley\CranleighCulturePlugin\TaxCustomField::getIssuuEmbed($obj);
+						if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) ) {
+							echo \FredBradley\CranleighCulturePlugin\TaxCustomField::getIssuuEmbed( $obj );
 						}
 
 						?>
 
 					</header><!-- .page-header -->
 
+					<?php
+					if (\FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed($obj) === false) {
+						echo '<div class="alert alert-warning">This page is not currently visable to vistors, because you have not published the document on ISSUU and supplied an Embed code. <a href="'.get_edit_term_link($obj->term_id).'">Edit here.</a></div>';
+					}
+					?>
 
 					<h2 class="text-center">Articles from the Magazine</h2>
 					<div class="row">

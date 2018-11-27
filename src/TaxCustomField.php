@@ -26,7 +26,7 @@ class TaxCustomField {
 		$meta = get_option( "taxonomy_term_$term->term_id" );
 
 		if (isset($meta['issuu_embed'])) {
-			return "<center>".$meta['issuu_embed']."</center>";
+			return "<center>".stripslashes($meta['issuu_embed'])."</center>";
 		}
 		return null;
 	}
@@ -55,7 +55,7 @@ class TaxCustomField {
 			</th>
 			<td>
 
-				<textarea name="term_meta[issuu_embed]" id="term_meta[issuu_embed]" rows="5" style="width:100%;"><?php echo $term_meta[ 'issuu_embed' ] ? $term_meta[ 'issuu_embed' ] : ''; ?></textarea><br />
+				<textarea name="term_meta[issuu_embed]" id="term_meta[issuu_embed]" rows="5" style="width:100%;"><?php echo stripslashes($term_meta[ 'issuu_embed' ]) ? stripslashes($term_meta[ 'issuu_embed' ]) : ''; ?></textarea><br />
 				<span class="description"><?php _e( 'Embed Code from ISSUU' ); ?></span>
 			</td>
 		</tr>
