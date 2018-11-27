@@ -5,7 +5,8 @@
 	"yahnis-elsts/plugin-update-checker": "^4.2",
 	"jjgrainger/posttypes": "^1.1",
 	"rilwis/meta-box": "^4.12",
-    "tareq1988/wordpress-settings-api-class": "^1.2"
+    "tareq1988/wordpress-settings-api-class": "^1.2",
+    "guzzlehttp/guzzle": "^6.3"
   },
   "license": "MIT",
   "authors": [

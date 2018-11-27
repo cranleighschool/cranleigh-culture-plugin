@@ -44,7 +44,9 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 						<?php
 
 						if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) ) {
+							echo '<div class="row"><div class="col-md-6 col-md-offset-3">';
 							echo \FredBradley\CranleighCulturePlugin\TaxCustomField::getIssuuEmbed( $obj );
+							echo '</div></div>';
 						}
 
 						?>
