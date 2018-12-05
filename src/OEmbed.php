@@ -15,17 +15,18 @@ class OEmbed {
 
 	public static $url;
 
-	public static function getOembed(string $url) {
+	public static function getOembed( string $url ) {
 
 		$client = new Client();
-		$res = $client->request('GET', 'https://issuu.com/oembed', [
+		$res    = $client->request( 'GET', 'https://issuu.com/oembed', [
 			'query' => [
-				'url' => $url."?e=5478439/54796210",
+				'url'    => $url,
 				'format' => 'json'
 			]
-		]);
+		] );
 
-		return json_decode($res->getBody());
+
+		return json_decode( $res->getBody() );
 	}
 
 
