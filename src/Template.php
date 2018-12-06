@@ -17,6 +17,7 @@ class Template {
 		add_filter( 'excerpt_length', [ self::class, 'excerpt_length' ], 9999 );
 		add_action( 'widgets_init', [ self::class, 'register_sidebar' ] );
 		add_action( 'wp_head', [ self::class, 'prefix_filter_og_image_head' ], 10, 1 );
+		add_action( 'pre_get_posts', [ self::class, 'setTaxonomyOrder' ] );
 
 		if ( Plugin::setting( 'include-drafts' ) ) {
 			add_action( 'pre_get_posts', [ self::class, 'filter_posts' ] );
@@ -33,6 +34,15 @@ class Template {
 
 	}
 
+
+	public static function setTaxonomyOrder( &$query ) {
+
+
+		if ( is_tax( 'culture-mag-edition' ) ) {
+			$query->set( 'orderby', 'menu_order' );
+			$query->set( 'order', 'ASC' );
+		}
+	}
 
 	public static function prefix_filter_og_image_head( $img ) {
 
