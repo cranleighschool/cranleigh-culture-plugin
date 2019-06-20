@@ -8,13 +8,12 @@
 
 namespace FredBradley\CranleighCulturePlugin;
 
-
 class ResetPermalinks {
 
-	public static $post_type_key = "culture-article";
-	public static $taxonomy_key = "culture-mag-edition";
-	public static $archive_slug = "culture";
-	public static $taxonomy_slug = "edition";
+	public static $post_type_key = 'culture-article';
+	public static $taxonomy_key  = 'culture-mag-edition';
+	public static $archive_slug  = 'culture';
+	public static $taxonomy_slug = 'edition';
 
 	public static function run() {
 
@@ -28,7 +27,7 @@ class ResetPermalinks {
 		if ( is_object( $post ) && $post->post_type == self::$post_type_key ) {
 			$terms = wp_get_object_terms( $post->ID, self::$taxonomy_key );
 			if ( $terms ) {
-				return str_replace( '%'.self::$taxonomy_key.'%', $terms[ 0 ]->slug, $post_link );
+				return str_replace( '%' . self::$taxonomy_key . '%', $terms[0]->slug, $post_link );
 			}
 		}
 
@@ -42,7 +41,7 @@ class ResetPermalinks {
 		}
 
 		$tax_args = [
-			"rewrite" => [
+			'rewrite' => [
 				'slug'       => self::$archive_slug,
 				'with_front' => true,
 			],
@@ -59,7 +58,7 @@ class ResetPermalinks {
 
 		$cpt_args = [
 			'rewrite'     => [
-				'slug'       => self::$archive_slug.'/%'.self::$taxonomy_key.'%',
+				'slug'       => self::$archive_slug . '/%' . self::$taxonomy_key . '%',
 				'with_front' => true,
 			],
 			'has_archive' => self::$archive_slug,

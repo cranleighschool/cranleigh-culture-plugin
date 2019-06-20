@@ -31,21 +31,21 @@ class CustomPostType {
 	 * @var array
 	 */
 	private $supports = [
-		"thumbnail",
-		"title",
-		"editor",
-		"page-attributes"
+		'thumbnail',
+		'title',
+		'editor',
+		'page-attributes',
 	];
 
 	/**
 	 * @var array
 	 */
 	private $options = [
-		"menu_position" => 27,
-		"menu_icon"     => "dashicons-book-alt",
-		"has_archive" => true,
-		"rewrite" => [
-			"slug" => "culture"
+		'menu_position' => 27,
+		'menu_icon'     => 'dashicons-book-alt',
+		'has_archive'   => true,
+		'rewrite'       => [
+			'slug' => 'culture',
 		],
 	];
 
@@ -53,7 +53,7 @@ class CustomPostType {
 	 * @var array
 	 */
 	public $labels = [
-		"name" => "Culture Magazine"
+		'name' => 'Culture Magazine',
 	];
 
 	/**
@@ -69,16 +69,19 @@ class CustomPostType {
 
 		$this->labels = array_merge( $this->labels, $labels );
 
-		$this->options[ 'supports' ] = $this->supports;
+		$this->options['supports'] = $this->supports;
 
 		$this->options = array_merge( $options, $this->options );
 
-		add_filter('rwmb_meta_boxes', array($this, 'metaboxes'));
-		add_action('edit_form_after_title', function() {
-			global $post, $wp_meta_boxes;
-			do_meta_boxes(get_current_screen(), "author_bio", $post);
-			unset($wp_meta_boxes[get_post_type($post)]['author_bio']);
-		});
+		add_filter( 'rwmb_meta_boxes', array( $this, 'metaboxes' ) );
+		add_action(
+			'edit_form_after_title',
+			function() {
+				global $post, $wp_meta_boxes;
+				do_meta_boxes( get_current_screen(), 'author_bio', $post );
+				unset( $wp_meta_boxes[ get_post_type( $post ) ]['author_bio'] );
+			}
+		);
 	}
 
 	/**
@@ -89,7 +92,7 @@ class CustomPostType {
 		$this->post_type = new PostType( $this->post_type_key, $this->options, $this->labels );
 		$this->setTaxonomies();
 
-		$rewrites = ResetPermalinks::run();
+		$rewrites   = ResetPermalinks::run();
 		$customMeta = TaxCustomField::run();
 	}
 
@@ -98,7 +101,7 @@ class CustomPostType {
 	 */
 	private function setPostTypeKey( string $key ) {
 
-		$key                 = str_replace( " ", "-", $key );
+		$key                 = str_replace( ' ', '-', $key );
 		$this->post_type_key = strtolower( $key );
 	}
 
@@ -112,20 +115,20 @@ class CustomPostType {
 
 	}
 
-	public function metaboxes($metaboxes) {
+	public function metaboxes( $metaboxes ) {
 
 		$metaboxes[] = array(
-			"title" => __("Author Bio", 'cranleigh-2016'),
-			"post_types" => $this->post_type_key,
-			"context" => "author_bio",
-			"priority" => "high",
-			"fields" => array(
+			'title'      => __( 'Author Bio', 'cranleigh-2016' ),
+			'post_types' => $this->post_type_key,
+			'context'    => 'author_bio',
+			'priority'   => 'high',
+			'fields'     => array(
 				array(
-					"id" => "article_author_bio",
-					"name" => "Author Bio",
-					"type" => "textarea"
-				)
-			)
+					'id'   => 'article_author_bio',
+					'name' => 'Author Bio',
+					'type' => 'textarea',
+				),
+			),
 		);
 		return $metaboxes;
 	}

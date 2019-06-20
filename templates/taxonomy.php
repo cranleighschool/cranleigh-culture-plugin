@@ -18,7 +18,7 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 	echo '<div id="primary" class="col-sm-12 content-area">';
 	echo '<div id="main" class="site-main" role="main">';
 	echo '<header class="page-header">';
-	echo '<h1 class="page-title text-center">Cranleigh Culture Magazine: '.$obj->name.'</h1>';
+	echo '<h1 class="page-title text-center">Cranleigh Culture Magazine: ' . $obj->name . '</h1>';
 	echo '</header>';
 	echo '<div class="alert alert-warning"><p>This edition is not yet published. Please come back soon.</p></div>';
 	echo '</main>';
@@ -33,13 +33,11 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 
 					<?php
 
-					if ( have_posts() ) : ?>
+					if ( have_posts() ) :
+						?>
 
 					<header class="page-header">
-						<?php
-
-						?>
-						<h1 class="page-title text-center"><?php echo $obj->name; ?></h1>
+												<h1 class="page-title text-center"><?php echo $obj->name; ?></h1>
 						<p class="lead text-center"><?php echo $obj->description; ?></p>
 						<?php
 
@@ -53,21 +51,22 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 
 					</header><!-- .page-header -->
 
-					<?php
-					if (\FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed($obj) === false) {
-						echo '<div class="alert alert-warning">This page is not currently visable to vistors, because you have not published the document on ISSUU and supplied an Embed code. <a href="'.get_edit_term_link($obj->term_id).'">Edit here.</a></div>';
-					}
-					?>
+						<?php
+						if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) === false ) {
+							echo '<div class="alert alert-warning">This page is not currently visable to vistors, because you have not published the document on ISSUU and supplied an Embed code. <a href="' . get_edit_term_link( $obj->term_id ) . '">Edit here.</a></div>';
+						}
+						?>
 
 					<h2 class="text-center">Articles from the Magazine</h2>
 					<div class="row">
 						<div class="col-md-10 col-md-offset-1">
 							<?php
 							$i = 0;
-							while ( have_posts() ): the_post();
+							while ( have_posts() ) :
+								the_post();
 								$i ++;
 								if ( $i % 2 ) {
-									$align_class = "pull-right";
+									$align_class = 'pull-right';
 								} else {
 									$align_class = null;
 								}
@@ -76,11 +75,19 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 
 									<div class="row">
 										<div class="col-sm-4 col-md-4 <?php echo $align_class; ?>">
-											<a href="<?php the_permalink(); ?>"><?php echo wp_get_attachment_image( get_post_thumbnail_id(),
-													'medium', false, [
-														"class" => "img-responsive",
-														"style" => "margin:auto;"
-													] ); ?></a>
+											<a href="<?php the_permalink(); ?>">
+																			<?php
+																			echo wp_get_attachment_image(
+																				get_post_thumbnail_id(),
+																				'medium',
+																				false,
+																				[
+																					'class' => 'img-responsive',
+																					'style' => 'margin:auto;',
+																				]
+																			);
+																			?>
+													</a>
 										</div>
 										<div class="col-sm-8 col-md-8">
 											<header class="entry-meta">
@@ -95,14 +102,14 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 												?>
 											</div>
 											<footer class="entry-footer">
-												<?php //cranleigh_2016_entry_footer(); ?>
+												<?php // cranleigh_2016_entry_footer(); ?>
 											</footer>
 										</div>
 									</div>
 
 								</article><!-- #edition-<?php the_ID(); ?> -->
 
-							<?php
+								<?php
 							endwhile;
 
 
@@ -114,7 +121,8 @@ if ( \FredBradley\CranleighCulturePlugin\TaxCustomField::hasIssuuEmbed( $obj ) =
 
 								get_template_part( 'template-parts/content', 'none' );
 
-							endif; ?>
+							endif;
+							?>
 						</div>
 					</div>
 

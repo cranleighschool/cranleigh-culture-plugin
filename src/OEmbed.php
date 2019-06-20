@@ -8,7 +8,6 @@
 
 namespace FredBradley\CranleighCulturePlugin;
 
-
 use GuzzleHttp\Client;
 
 class OEmbed {
@@ -18,13 +17,16 @@ class OEmbed {
 	public static function getOembed( string $url ) {
 
 		$client = new Client();
-		$res    = $client->request( 'GET', 'https://issuu.com/oembed', [
-			'query' => [
-				'url'    => $url,
-				'format' => 'json'
+		$res    = $client->request(
+			'GET',
+			'https://issuu.com/oembed',
+			[
+				'query' => [
+					'url'    => $url,
+					'format' => 'json',
+				],
 			]
-		] );
-
+		);
 
 		return json_decode( $res->getBody() );
 	}

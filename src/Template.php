@@ -8,7 +8,6 @@
 
 namespace FredBradley\CranleighCulturePlugin;
 
-
 class Template {
 
 	public static function run() {
@@ -37,7 +36,6 @@ class Template {
 
 	public static function setTaxonomyOrder( &$query ) {
 
-
 		if ( is_tax( 'culture-mag-edition' ) ) {
 			$query->set( 'orderby', 'menu_order' );
 			$query->set( 'order', 'ASC' );
@@ -47,7 +45,7 @@ class Template {
 	public static function prefix_filter_og_image_head( $img ) {
 
 		if ( is_post_type_archive( 'culture-article' ) ) {
-			$image       = "https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg";
+			$image       = 'https://www.cranleigh.org/wp-content/uploads/2017/10/Thumbnail-Web-Cranleigh-Culture-Magazine.jpg';
 			$description = strip_tags( Plugin::setting( 'welcome-paragraph' ) );
 			echo '<meta name="og:image" property="og:image" content="' . $image . '" />';
 			echo '<meta name="og:description" property="og:description" content="' . $description . '" />';
@@ -57,7 +55,13 @@ class Template {
 	public static function filter_posts( $query ) {
 
 		if ( is_post_type_archive( 'culture-article' ) && ! is_admin() ) {
-			$query->set( "orderby", [ "menu_order" => "ASC", "date" => "ASC" ] );
+			$query->set(
+				'orderby',
+				[
+					'menu_order' => 'ASC',
+					'date'       => 'ASC',
+				]
+			);
 			$query->set( 'post_status', [ 'publish', 'draft', 'pending', 'private', 'future' ] );
 		}
 	}
@@ -95,8 +99,8 @@ class Template {
 
 	public static function register_sidebar() {
 
-		$sidebar[ "name" ] = "Culture Mag Sidebar";
-		$sidebar[ 'id' ]   = "culture-mag";
+		$sidebar['name'] = 'Culture Mag Sidebar';
+		$sidebar['id']   = 'culture-mag';
 		register_sidebar(
 			wp_parse_args( $sidebar, cranleigh_2016_sidebar_defaults() )
 		);

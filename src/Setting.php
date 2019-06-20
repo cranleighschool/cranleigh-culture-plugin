@@ -14,17 +14,17 @@ class Setting {
 
 	public $settings;
 
-	public function __construct($option_name) {
+	public function __construct( $option_name ) {
 		$this->option_name = $option_name;
-		$this->settings = get_option($this->option_name);
+		$this->settings    = get_option( $this->option_name );
 	}
 
-	public function __get($name) {
-		if (isset($this->settings[$name])) {
-			return $this->settings[$name];
+	public function __get( $name ) {
+		if ( isset( $this->settings[ $name ] ) ) {
+			return $this->settings[ $name ];
 		} else {
-			new WP_Error("400", "Setting Not Found");
+			new WP_Error( '400', 'Setting Not Found' );
 		}
-//		return $this->settings[$name];
+		// return $this->settings[$name];
 	}
 }
